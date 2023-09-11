@@ -1,5 +1,7 @@
 
 import {useState} from 'react'
+import Basic from './components/Basic'
+import Advanced from './components/Advanced'
 
 
 
@@ -31,6 +33,8 @@ function App() {
           Advanced
         </h3>
       </nav>
+
+      {view === 'basic' ? <Basic/> : <Advanced/>}
       </div>
   );
 }

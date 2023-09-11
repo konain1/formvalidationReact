@@ -9,9 +9,12 @@ body{
 }
 
 .App{
-  display: flex;
+  display: grid;
   /* border: 1px solid white; */
   width: 20vw;
+  place-content: center;
+  
+
 
 }
 nav{
@@ -19,4 +22,10 @@ nav{
   justify-content: space-between;
   width: 100%;
   cursor: pointer;
+}
+form {
+  /* border: 1px solid white; */
+  margin-top: 10rem;
+  color: aliceblue;
+
 }
