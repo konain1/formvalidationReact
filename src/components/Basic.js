@@ -1,28 +1,37 @@
 import React from 'react'
 import {useFormik} from 'formik'
+import {basicSchema} from './../schemas/index'
+
+
+
+const onSubmit = ()=>{
+    console.log('succed')
+}
 
 function Basic() {
 
-    const {values,handleBlur,handleChange} = useFormik({
+    const {values,errors,handleBlur,handleChange,handleSubmit} = useFormik({
         initialValues:{
             email:"",
             age:"",
             password:"",
             confirmpassword:"",
-        }
-
-
+        },
+        validationSchema:basicSchema,
+        onSubmit,
     })
 
 
-    console.log(values)
+    console.log(errors)
   return (
-   <form autoComplete='off' >
+   <form onSubmit={handleSubmit} autoComplete='off' >
     <label htmlFor='email' >Email</label>
     <br></br>
     <input value={values.email} 
     onChange={handleChange}
-    id='email' type='email' placeholder='basic' />
+    id='email' type='email' placeholder='basic' 
+    className={errors.email ? 'input-error' : ''}
+    />
 
 
     <br></br>
