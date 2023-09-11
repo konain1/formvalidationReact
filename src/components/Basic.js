@@ -10,7 +10,7 @@ const onSubmit = ()=>{
 
 function Basic() {
 
-    const {values,errors,handleBlur,handleChange,handleSubmit} = useFormik({
+    const {values,errors,touched,handleBlur,handleChange,handleSubmit} = useFormik({
         initialValues:{
             email:"",
             age:"",
@@ -22,16 +22,23 @@ function Basic() {
     })
 
 
-    console.log(errors)
+    console.log(touched)
   return (
+
+
    <form onSubmit={handleSubmit} autoComplete='off' >
+
     <label htmlFor='email' >Email</label>
+
     <br></br>
     <input value={values.email} 
     onChange={handleChange}
     id='email' type='email' placeholder='basic' 
-    className={errors.email ? 'input-error' : ''}
+    onBlur={handleBlur}
+    className={errors.email && touched.email ? 'input-error' : ''}
     />
+    {errors.age && touched.email && <p>{errors.email}</p>}
+
 
 
     <br></br>
@@ -41,8 +48,10 @@ function Basic() {
     onChange={handleChange}
     onBlur={handleBlur}
     id='age' type='number' placeholder='age' 
-    />
+    className={errors.age && touched.age ?  'input-error' : ''}
 
+    />
+{errors.age && touched.age && <p>{errors.age}</p>}
 
     <br></br>
         <label htmlFor='password' >password</label>
@@ -51,7 +60,10 @@ function Basic() {
         onChange={handleChange}
         onBlur={handleBlur}
         id='password' type='password' placeholder='password' 
+        className={errors.password && touched.password ? 'input-error' : ''}
+
         />
+{errors.password && touched.password && <p>{errors.password}</p>}
 
     <br></br>
     <label htmlFor='confirmpassword' >confirmpassword</label>
@@ -60,7 +72,11 @@ function Basic() {
     onChange={handleChange}
     onBlur={handleBlur}
     id='confirmpassword' type='password' placeholder='confirmpassword' 
+    className={errors.confirmpassword && touched.confirmpassword ? 'input-error' : ''}
+
     />
+    {errors.confirmpassword && touched.confirmpassword && <p>{errors.confirmpassword}</p>}
+
 
 <br></br>
 <button>submit</button>
