@@ -4,13 +4,17 @@ import {basicSchema} from './../schemas/index'
 
 
 
-const onSubmit = ()=>{
-    console.log('succed')
+const onSubmit = async(values,action)=>{
+    console.log(values)
+
+    await new Promise((resolve)=> setTimeout(()=>{resolve()},2000))
+    action.resetForm()
 }
 
 function Basic() {
 
-    const {values,errors,touched,handleBlur,handleChange,handleSubmit} = useFormik({
+    const {values,errors,touched,isSubmitting,handleBlur,handleChange,handleSubmit} = useFormik({
+
         initialValues:{
             email:"",
             age:"",
@@ -37,7 +41,7 @@ function Basic() {
     onBlur={handleBlur}
     className={errors.email && touched.email ? 'input-error' : ''}
     />
-    {errors.age && touched.email && <p>{errors.email}</p>}
+    {errors.email && touched.email && <p>{errors.email}</p>}
 
 
 
@@ -79,7 +83,7 @@ function Basic() {
 
 
 <br></br>
-<button>submit</button>
+<button disabled={isSubmitting}>submit</button>
 
    </form>
   )
